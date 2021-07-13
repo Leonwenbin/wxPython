@@ -1,6 +1,7 @@
 import wx
 import time
 
+
 class ClockWindow(wx.Window):
     def __init__(self, parent):
         wx.Window.__init__(self, parent)
@@ -17,8 +18,8 @@ class ClockWindow(wx.Window):
         dc.Clear()
         dc.SetFont(wx.Font(30, wx.SWISS, wx.NORMAL, wx.NORMAL))
         tw, th = dc.GetTextExtent(st)
-        dc.DrawText(st, (w-tw)/2, (h)/2 - th/2)
-        
+        dc.DrawText(st, (w - tw) / 2, (h) / 2 - th / 2)
+
     def OnTimer(self, evt):
         dc = wx.BufferedDC(wx.ClientDC(self))
         self.Draw(dc)
@@ -27,13 +28,14 @@ class ClockWindow(wx.Window):
         dc = wx.BufferedPaintDC(self)
         self.Draw(dc)
 
+
 class MyFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, title="wx.Timer")
         ClockWindow(self)
-        
 
-app = wx.PySimpleApp()
+
+app = wx.App()
 frm = MyFrame()
 frm.Show()
 app.MainLoop()

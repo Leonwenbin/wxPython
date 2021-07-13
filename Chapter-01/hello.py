@@ -2,8 +2,9 @@
 
 """Hello, wxPython! program."""
 
-#wxPython is a cross-platform GUI toolkit for the Python programming language
+# wxPython is a cross-platform GUI toolkit for the Python programming language
 import wx
+
 
 class Frame(wx.Frame):
     """Frame class that displays an image."""
@@ -17,6 +18,7 @@ class Frame(wx.Frame):
         self.bmp = wx.StaticBitmap(parent=self, bitmap=temp)
         self.SetClientSize(size)
 
+
 class App(wx.App):
     """Application class."""
 
@@ -27,10 +29,11 @@ class App(wx.App):
         self.SetTopWindow(self.frame)
         return True
 
+
 def main():
     app = App()
     app.MainLoop()
 
+
 if __name__ == '__main__':
     main()
-    

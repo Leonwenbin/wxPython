@@ -2,36 +2,35 @@ import wx
 import wx.gizmos
 import data
 
+
 class TestFrame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, title="TreeListCtrl", size=(400,500))
+        wx.Frame.__init__(self, None, title="TreeListCtrl", size=(400, 500))
 
         # Create an image list
-        il = wx.ImageList(16,16)
+        il = wx.ImageList(16, 16)
 
         # Get some standard images from the art provider and add them
         # to the image list
         self.fldridx = il.Add(
-            wx.ArtProvider.GetBitmap(wx.ART_FOLDER, wx.ART_OTHER, (16,16)))
+            wx.ArtProvider.GetBitmap(wx.ART_FOLDER, wx.ART_OTHER, (16, 16)))
         self.fldropenidx = il.Add(
-            wx.ArtProvider.GetBitmap(wx.ART_FILE_OPEN,   wx.ART_OTHER, (16,16)))
+            wx.ArtProvider.GetBitmap(wx.ART_FILE_OPEN, wx.ART_OTHER, (16, 16)))
         self.fileidx = il.Add(
-            wx.ArtProvider.GetBitmap(wx.ART_NORMAL_FILE, wx.ART_OTHER, (16,16)))
-        
+            wx.ArtProvider.GetBitmap(wx.ART_NORMAL_FILE, wx.ART_OTHER, (16, 16)))
 
         # Create the tree
-        self.tree = wx.gizmos.TreeListCtrl(self, style =
-                                           wx.TR_DEFAULT_STYLE
-                                           | wx.TR_FULL_ROW_HIGHLIGHT)
+        self.tree = wx.gizmos.TreeListCtrl(self, style=
+        wx.TR_DEFAULT_STYLE
+        | wx.TR_FULL_ROW_HIGHLIGHT)
 
         # Give it the image list
         self.tree.AssignImageList(il)
 
-
         # create some columns
         self.tree.AddColumn("Class Name")
         self.tree.AddColumn("Description")
-        self.tree.SetMainColumn(0) # the one with the tree in it...
+        self.tree.SetMainColumn(0)  # the one with the tree in it...
         self.tree.SetColumnWidth(0, 200)
         self.tree.SetColumnWidth(1, 200)
 
@@ -42,7 +41,7 @@ class TestFrame(wx.Frame):
                                wx.TreeItemIcon_Normal)
         self.tree.SetItemImage(root, self.fldropenidx,
                                wx.TreeItemIcon_Expanded)
-        
+
         # Add nodes from our data set
         self.AddTreeNodes(root, data.tree)
 
@@ -54,7 +53,6 @@ class TestFrame(wx.Frame):
 
         # Expand the first level
         self.tree.Expand(root)
-        
 
     def AddTreeNodes(self, parentItem, items):
         """
@@ -74,31 +72,29 @@ class TestFrame(wx.Frame):
                                        wx.TreeItemIcon_Normal)
                 self.tree.SetItemImage(newItem, self.fldropenidx,
                                        wx.TreeItemIcon_Expanded)
-   
+
                 self.AddTreeNodes(newItem, item[1])
-                
 
     def GetItemText(self, item):
         if item:
             return self.tree.GetItemText(item)
         else:
             return ""
-        
+
     def OnItemExpanded(self, evt):
-        print "OnItemExpanded: ", self.GetItemText(evt.GetItem())
-        
+        print("OnItemExpanded: ", self.GetItemText(evt.GetItem()))
+
     def OnItemCollapsed(self, evt):
-        print "OnItemCollapsed:", self.GetItemText(evt.GetItem())
+        print("OnItemCollapsed:", self.GetItemText(evt.GetItem()))
 
     def OnSelChanged(self, evt):
-        print "OnSelChanged:   ", self.GetItemText(evt.GetItem())
+        print("OnSelChanged:   ", self.GetItemText(evt.GetItem()))
 
     def OnActivated(self, evt):
-        print "OnActivated:    ", self.GetItemText(evt.GetItem())
+        print("OnActivated:    ", self.GetItemText(evt.GetItem()))
 
 
-app = wx.PySimpleApp(redirect=True)
+app = wx.App(redirect=True)
 frame = TestFrame()
 frame.Show()
 app.MainLoop()
-

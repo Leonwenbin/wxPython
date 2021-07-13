@@ -43,16 +43,16 @@ class TestFrame(wx.Frame):
             return ""
         
     def OnItemExpanded(self, evt):
-        print "OnItemExpanded: ", self.GetItemText(evt.GetItem())
+        print("OnItemExpanded: ", self.GetItemText(evt.GetItem()))
         
     def OnItemCollapsed(self, evt):
-        print "OnItemCollapsed:", self.GetItemText(evt.GetItem())
+        print("OnItemCollapsed:", self.GetItemText(evt.GetItem()))
 
     def OnSelChanged(self, evt):
-        print "OnSelChanged:   ", self.GetItemText(evt.GetItem())
+        print("OnSelChanged:   ", self.GetItemText(evt.GetItem()))
 
     def OnActivated(self, evt):
-        print "OnActivated:    ", self.GetItemText(evt.GetItem())
+        print("OnActivated:    ", self.GetItemText(evt.GetItem()))
 
 
 app = wx.PySimpleApp(redirect=True)
